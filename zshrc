@@ -86,12 +86,11 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias l="ls -F"
-alias ll="ls -lahF"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+# git
+alias gst='git status -sb'
 
 # ANTLR
 alias antlr4='java -jar /usr/local/lib/antlr-4.7.1-complete.jar'
