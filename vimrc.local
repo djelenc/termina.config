@@ -1,0 +1,57 @@
+" move across softly-wrapped lines
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
+" airline
+let g:airline_powerline_fonts = 1
+" let g:airline_theme = 'base16'
+
+" forward delete word in insert mode
+inoremap <C-d> <Esc>wdiwi
+
+" enable mouse
+set mouse=a
+
+" relative line numbers
+:set number relativenumber
+:set nu rnu
+
+" GO STUFF
+" remap C-x C-o to C-Space
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+" Go specicifs
+set autowrite " save on build
+
+" next error
+map <C-n> :cnext<CR>
+
+" previous error
+map <C-m> :cprevious<CR>
+
+" close error window
+nnoremap <leader>a :cclose<CR>
+
+" a single list of errors
+let g:go_list_type = "quickfix"
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>m :<C-u>call <SID>build_go_files()<CR>
+
+" identifier resolution
+let g:go_auto_type_info = 1
+set updatetime=100
+let g:go_auto_sameids = 1 " automatically highlight identifiers
