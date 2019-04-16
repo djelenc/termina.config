@@ -16,6 +16,9 @@ set mouse=a
 :set number relativenumber
 :set nu rnu
 
+" quick save with leader + S
+noremap <Leader>s :update<CR>
+
 " GO STUFF
 " remap C-x C-o to C-Space
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
@@ -24,8 +27,9 @@ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
 \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
-" Go specicifs
-set autowrite " save on build
+
+" save on build
+set autowrite
 
 " next error
 map <C-n> :cnext<CR>
