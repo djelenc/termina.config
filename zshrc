@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:$HOME/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/david/.oh-my-zsh
@@ -62,6 +63,8 @@ plugins=(
     git
     extract
     tmux
+    mvn
+    golang
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,7 +96,6 @@ source $ZSH/oh-my-zsh.sh
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-# git
 alias gst='git status -sb'
 
 # ANTLR
@@ -102,31 +104,38 @@ alias grun="java -cp .:/usr/local/lib/antlr-4.7.1-complete.jar org.antlr.v4.gui.
 alias gcomp="javac -cp /usr/local/lib/antlr-4.7.1-complete.jar $*"
 alias gexec="java -cp .:/usr/local/lib/antlr-4.7.1-complete.jar $*"
 
-# Golang
-export GOPATH=$HOME/Development/go
-
 # Android SDK
-export PATH="$PATH:/home/david/apps/android-sdk/platform-tools:$HOME/bin:$GOPATH/bin"
+export PATH="$PATH:/home/david/apps/android-sdk/platform-tools"
+
+# Golang
+export GOROOT=/home/david/apps/golang/go
+export GOPATH=$HOME/Development/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 
 # Virtalenv and virtualenvwrapper
-export WORKON_HOME=/home/david/Development/python/virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /usr/local/bin/virtualenvwrapper.sh
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/Development/python/virtualenvs
+# Ubuntu 18.04 /usr/local/bin/virtualenvwrapper.sh
+# Ubuntu 16.04 /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh >/dev/null 2>&1 || source /usr/local/bin/virtualenvwrapper.sh
 
-# rmd to render markdown in terminal
-rmd () {
-  pandoc $1 | lynx -stdin
-}
-
+# Maybe put the following PATH modifications to some local file?
 # ESP32 toolchain
 export PATH="$PATH:/home/david/Development/esp32/xtensa-esp32-elf/bin"
-export PATH="/usr/local/cuda-9.2/bin:$PATH"
 export IDF_PATH=~/Development/esp32/esp-idf
+
+# Cuda: do I need it?
+export PATH="/usr/local/cuda-9.2/bin:$PATH"
 
 # haskell
 export PATH="$PATH:/home/david/.local/bin"
-export JAVA_HOME="/usr/lib/jvm/java-10-oracle"
+
+# docker-compose
+# See manual installation
+# https://github.com/zsh-users/zsh-completions e. g.
+# git clone git://github.com/zsh-users/zsh-completions.git ~/.zsh/completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 # vi mode
 # https://dougblack.io/words/zsh-vi-mode.html

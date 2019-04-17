@@ -1,4 +1,4 @@
-# David's terminal settings
+# My terminal settings
 
 Contains configurations for the following programs.
 
@@ -6,6 +6,7 @@ Contains configurations for the following programs.
     ```
     sudo apt install zsh powerline fonts-powerline
     git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    git clone git://github.com/zsh-users/zsh-completions.git ~/.zsh/completion
     ```
 * **ssh** client
 * **vim** using [vim bootstrap](https://vim-bootstrap.com)
