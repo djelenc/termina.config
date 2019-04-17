@@ -108,10 +108,8 @@ alias gexec="java -cp .:/usr/local/lib/antlr-4.7.1-complete.jar $*"
 export PATH="$PATH:/home/david/apps/android-sdk/platform-tools"
 
 # Golang
-export GOROOT=/home/david/apps/golang/go
 export GOPATH=$HOME/Development/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
+export PATH=$GOPATH/bin:$PATH
 
 # Virtalenv and virtualenvwrapper
 export WORKON_HOME=$HOME/Development/python/virtualenvs
