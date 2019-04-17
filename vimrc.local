@@ -7,7 +7,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'base16'
 
 " forward delete word in insert mode
-inoremap <C-d> <Esc>wdiwi
+inoremap <C-d> <Esc>wdiwxi
 
 " enable mouse
 set mouse=a
