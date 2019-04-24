@@ -47,6 +47,7 @@ Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 " david
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
+Plug 'easymotion/vim-easymotion'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
