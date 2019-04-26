@@ -21,3 +21,7 @@ ln -sf $PWD/ssh.config ~/.ssh/config
 # zshrc
 mv ~/.zshrc ~/.zshrc-$DATE && echo "Backing up existing zshrc ~/.zshrc-$DATE" || echo "No prior zshrc"
 ln -sf $PWD/zshrc ~/.zshrc
+
+# spacemacs
+mv ~/.spacemacs ~/.spacemacs-$DATE && echo "Backing up existing spacemacs to ~/.spacemacs-$DATE" || echo "No prior spacemacs"
+ln -sf $PWD/spacemacs ~/.spacemacs
