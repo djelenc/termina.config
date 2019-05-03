@@ -6,24 +6,32 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 hi MatchParen cterm=none ctermbg=green ctermfg=blue
 " airline
 let g:airline_powerline_fonts = 1
-" let g:airline_theme = 'base16'
 
 " forward delete word in insert mode
-inoremap <C-d> <Esc>wdiwxi
+" inoremap <C-d> <Esc>wdiwxi
 
 " enable mouse
 set mouse=a
 
 " relative line numbers
-:set number relativenumber
-:set nu rnu
-
-" quick save with leader + S
-noremap <Leader>s :update<CR>
+set number relativenumber
+set nu rnu
 
 " better autocomplete options
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
+" Clear search marks
+nnoremap <c-l> :nohl<cr><c-l>
+
+" space as colon
+noremap <space> :
+
+" quick save with S
+noremap S :update<CR>
+
+" reduce timeout after pressing c+[
+set timeout timeoutlen=3000 ttimeoutlen=100
 
 " GO STUFF
 " remap C-x C-o to C-Space
