@@ -21,6 +21,10 @@ set mouse=a
 " quick save with leader + S
 noremap <Leader>s :update<CR>
 
+" better autocomplete options
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
 " GO STUFF
 " remap C-x C-o to C-Space
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
