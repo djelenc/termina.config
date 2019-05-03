@@ -42,7 +42,6 @@ Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
-Plug 'sheerun/vim-polyglot'
 " Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 " david
 " Plug 'AndrewRadev/splitjoin.vim'
@@ -104,6 +103,7 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
+Plug 'sheerun/vim-polyglot'
 
 "*****************************************************************************
 "*****************************************************************************
