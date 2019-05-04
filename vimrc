@@ -1,11 +1,11 @@
-" vim-bootstrap
+" vim-bootstrap 
 
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "go,html,javascript,php,python"
+let g:vim_bootstrap_langs = "go,html,javascript,php,python,typescript"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -15,7 +15,7 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent exec "!\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
@@ -30,23 +30,19 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
-" Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-" david
-" Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'SirVer/ultisnips'
-Plug 'easymotion/vim-easymotion'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -78,7 +74,7 @@ Plug 'tomasr/molokai'
 " go
 "" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+
 
 " html
 "" HTML Bundle
@@ -103,23 +99,11 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
-Plug 'sheerun/vim-polyglot'
 
-" deoplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-set completeopt=longest,menuone
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
-" Deoplete go
-let g:deoplete#sources#go#gocode_binary = '/home/david/Development/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-" let g:python3_host_prog = '/usr/bin/python3.6'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -294,6 +278,13 @@ let Grep_Skip_Dirs = '.git node_modules'
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
+
+
+"*****************************************************************************
+"" Commands
+"*****************************************************************************
+" remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
 
 "*****************************************************************************
 "" Functions
@@ -582,6 +573,11 @@ let g:airline#extensions#virtualenv#enabled = 1
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
+
+
+" typescript
+let g:yats_host_keyword = 1
+
 
 
 "*****************************************************************************

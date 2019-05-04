@@ -10,6 +10,17 @@ let g:airline_powerline_fonts = 1
 " forward delete word in insert mode
 " inoremap <C-d> <Esc>wdiwxi
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
+set completeopt=longest,menuone
+
+" Deoplete go
+let g:deoplete#sources#go#gocode_binary = '/home/david/Development/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+" todo preveri ce obstaja
+let g:python3_host_prog = '/home/david/Development/python/virtualenvs/vim8/bin/python'
+
 " enable mouse
 set mouse=a
 
@@ -35,12 +46,12 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 " GO STUFF
 " remap C-x C-o to C-Space
-inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-\ "\<lt>C-n>" :
-\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-imap <C-@> <C-Space>
+" inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+" \ "\<lt>C-n>" :
+" \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+" \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+" \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+" imap <C-@> <C-Space>
 
 " save on build
 set autowrite
