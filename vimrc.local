@@ -67,7 +67,9 @@ endfunction
 
 autocmd FileType go nmap <leader>m :<C-u>call <SID>build_go_files()<CR>
 
+let g:go_def_mode = "gopls"
 " identifier resolution
 " let g:go_auto_type_info = 1
 " set updatetime=50
-" let g:go_auto_sameids = 1 " automatically highlight identifiers
+let g:go_auto_sameids = 1 " automatically highlight identifiers
+set completeopt+=noinsert

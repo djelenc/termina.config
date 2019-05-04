@@ -45,7 +45,7 @@ Plug 'avelino/vim-bootstrap-updater'
 " Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 " david
 " Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'easymotion/vim-easymotion'
 
 if isdirectory('/usr/local/opt/fzf')
@@ -78,7 +78,7 @@ Plug 'tomasr/molokai'
 " go
 "" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
 " html
 "" HTML Bundle
@@ -104,6 +104,22 @@ Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 Plug 'sheerun/vim-polyglot'
+
+" deoplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+set completeopt=longest,menuone
+
+" Deoplete go
+let g:deoplete#sources#go#gocode_binary = '/home/david/Development/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" let g:python3_host_prog = '/usr/bin/python3.6'
 
 "*****************************************************************************
 "*****************************************************************************
