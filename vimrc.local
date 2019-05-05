@@ -4,22 +4,23 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 " use different colors for matching brackets
 hi MatchParen cterm=none ctermbg=green ctermfg=blue
+
 " airline
 let g:airline_powerline_fonts = 1
 
 " forward delete word in insert mode
 " inoremap <C-d> <Esc>wdiwxi
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-set completeopt=longest,menuone
-
 " Deoplete go
 let g:deoplete#sources#go#gocode_binary = '/home/david/Development/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" todo preveri ce obstaja
+" todo preveri, ce obstaja
 let g:python3_host_prog = '/home/david/Development/python/virtualenvs/vim8/bin/python'
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+set completeopt=longest,menuone
 
 " enable mouse
 set mouse=a
@@ -31,9 +32,6 @@ set nu rnu
 " better autocomplete options
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-
-" Clear search marks
-nnoremap <c-l> :nohl<cr><c-l>
 
 " space as colon
 noremap <space> :
@@ -63,24 +61,4 @@ map <C-m> :cprevious<CR>
 " close error window
 nnoremap <leader>a :cclose<CR>
 
-" a single list of errors
-let g:go_list_type = "quickfix"
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>m :<C-u>call <SID>build_go_files()<CR>
-
 let g:go_def_mode = "gopls"
-" identifier resolution
-" let g:go_auto_type_info = 1
-" set updatetime=50
-let g:go_auto_sameids = 1 " automatically highlight identifiers
-set completeopt+=noinsert
