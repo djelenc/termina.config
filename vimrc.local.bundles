@@ -9,3 +9,7 @@ endif
 
 " deoplete-go
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+
+" gutentags
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ervandew/supertab'
