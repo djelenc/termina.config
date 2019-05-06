@@ -15,8 +15,10 @@ let g:airline_powerline_fonts = 1
 let g:deoplete#sources#go#gocode_binary = '/home/david/Development/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" todo preveri, ce obstaja
-let g:python3_host_prog = '/home/david/Development/python/virtualenvs/vim8/bin/python'
+" when python 3.6 is not used by default, we need a virtualenv
+if isdirectory('/home/david/Development/python/virtualenvs/vim8/bin/python')
+    let g:python3_host_prog = '/home/david/Development/python/virtualenvs/vim8/bin/python'
+endif
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
