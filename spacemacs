@@ -520,26 +520,27 @@ This function is called at the very end of Spacemacs initialization."
   mu4e-view-show-addresses t
   mu4e-hide-index-messages t
 
-  mu4e-maildir "~/.mail/gmail"
-  mu4e-drafts-folder "/[Gmail]/Drafts"
-  mu4e-sent-folder   "/[Gmail]/Sent Mail"
-  mu4e-trash-folder  "/[Gmail]/Trash"
+  ;; the addresses are absolute because of the following bug
+  ;; https://stackoverflow.com/questions/20246229/mu4e-does-not-list-all-messages-in-inbox
+  mu4e-maildir "~/.mail"
+  mu4e-drafts-folder "/gmail/[Gmail].Drafts"
+  mu4e-sent-folder   "/gmail/[Gmail].Sent Mail"
+  mu4e-trash-folder  "/gmail/[Gmail].Trash"
 
   ;; setup some handy shortcuts
   ;; you can quickly switch to your Inbox -- press ``ji''
   ;; then, when you want archive some messages, move them to
   ;; the 'All Mail' folder by pressing ``ma''.
-  mu4e-maildir-shortcuts
-      '( ("/inbox"              . ?i)
-        ("/[Gmail]/Sent Mail"   . ?s)
-        ("/[Gmail]/Trash"       . ?t)
-        ("/[Gmail]/All Mail"    . ?a))
+  mu4e-maildir-shortcuts '(
+    ("/gmail/INBOX"               . ?i)
+    ("/gmail/[Gmail].Sent Mail"   . ?s)
+    ("/gmail/[Gmail].Trash"       . ?t)
+    ("/gmail/[Gmail].All Mail"    . ?a))
 
   mu4e-attachment-dir  "~/Downloads"
   ;; allow for updating mail using 'U' in the main view:
   mu4e-get-mail-command "mbsync -a"
 
-  ;; something about ourselves
   user-mail-address "david.jelenc@fri.uni-lj.si"
   user-full-name  "David Jelenc"
 
