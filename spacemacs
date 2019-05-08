@@ -481,6 +481,17 @@ before packages are loaded."
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
   ;; To perform full-document previews for latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  ;; https://github.com/syl20bnr/spacemacs/issues/9603
+  (org-defkey org-mode-map [(meta return)] 'org-meta-return)
+
+  (with-eval-after-load 'org
+    (setq org-todo-keywords
+          '((sequence "TODO" "WAITING" "|" "DONE" "ARCHIVED")))
+    (setq org-todo-keyword-faces
+          '(("TODO" . "SlateGray")
+            ("WAITING" . "Firebrick")
+            ("DONE" . "ForestGreen")
+            ("ARCHIVED" .  "SlateBlue"))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -557,6 +568,8 @@ This function is called at the very end of Spacemacs initialization."
   mu4e-hide-index-messages t
   mu4e-enable-notifications t
   mu4e-update-interval 60
+  ;; store org links to queries in headers mode
+  org-mu4e-link-query-in-headers-mode t
   ;; don't keep message buffers around
   message-kill-buffer-on-exit t)
 
@@ -567,3 +580,5 @@ This function is called at the very end of Spacemacs initialization."
             ;; try to emulate some of the eww key-bindings
             (local-set-key (kbd "<tab>") 'shr-next-link)
             (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
+(require 'org-mu4e)
