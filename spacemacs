@@ -482,8 +482,6 @@ before packages are loaded."
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
   ;; To perform full-document previews for latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  ;; https://github.com/syl20bnr/spacemacs/issues/9603
-  (org-defkey org-mode-map [(meta return)] 'org-meta-return)
 
   (with-eval-after-load 'org
     (setq org-todo-keywords
@@ -582,4 +580,6 @@ This function is called at the very end of Spacemacs initialization."
             (local-set-key (kbd "<tab>") 'shr-next-link)
             (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
-(require 'org-mu4e)
+(with-eval-after-load 'org
+  (require 'org-mu4e)
+)
