@@ -455,7 +455,8 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default
-   evil-escape-key-sequence "jk"
+   ;; evil-escape-key-sequence "jk"
+   ;; leave it to fd as default
    evil-escape-unordered-key-sequence "true"
    )
   )
