@@ -582,4 +582,5 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
+  (setq org-default-notes-file "~/nextcloud/org/notes.org")
 )
