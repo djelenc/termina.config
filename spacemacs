@@ -509,7 +509,10 @@ This function is called at the very end of Spacemacs initialization."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files (quote ("~/nextcloud/org/notes.org")))
+ '(org-agenda-files '("~/nextcloud/org/inbox.org"
+                      "~/nextcloud/org/gtd.org"
+                      "~/nextcloud/org/tickler.org"))
+ '(org-log-into-drawer t)
  '(package-selected-packages
    (quote
     (unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
@@ -585,5 +588,14 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
-  (setq org-default-notes-file "~/nextcloud/org/notes.org")
+  ;; (setq org-default-notes-file "~/nextcloud/org/notes.org")
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                 (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                                 "* TODO %i%?")
+                                ("T" "Tickler" entry
+                                 (file+headline "~/nextcloud/org/tickler.org" "Tickler")
+                                 "* %i%? \n %U")))
+  (setq org-refile-targets '(("~/nextcloud/org/gtd.org" :maxlevel . 1)
+                             ("~/nextcloud/org/someday.org" :level . 1)
+                             ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
 )
