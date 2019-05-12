@@ -65,6 +65,8 @@ plugins=(
     tmux
     mvn
     golang
+    docker
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh

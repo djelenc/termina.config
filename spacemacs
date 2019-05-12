@@ -199,7 +199,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-light
+   dotspacemacs-themes '(leuven
+                         spacemacs-light
                          monokai
                          spacemacs-dark)
 
@@ -510,7 +511,8 @@ This function is called at the very end of Spacemacs initialization."
    [default default default italic underline success warning error])
  '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files '("~/nextcloud/org/inbox.org"
-                      "~/nextcloud/org/gtd.org"
+                      "~/nextcloud/org/zasebno.org"
+                      "~/nextcloud/org/fri.org"
                       "~/nextcloud/org/tickler.org"))
  '(org-log-into-drawer t)
  '(package-selected-packages
@@ -573,6 +575,7 @@ This function is called at the very end of Spacemacs initialization."
   mu4e-hide-index-messages t
   mu4e-enable-notifications t
   mu4e-update-interval 60
+  use-hard-newlines t
   ;; store org links to queries in headers mode
   org-mu4e-link-query-in-headers-mode t
   ;; don't keep message buffers around
@@ -588,14 +591,19 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
-  ;; (setq org-default-notes-file "~/nextcloud/org/notes.org")
-  (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("T" "Tickler" entry
-                                 (file+headline "~/nextcloud/org/tickler.org" "Tickler")
-                                 "* %i%? \n %U")))
-  (setq org-refile-targets '(("~/nextcloud/org/gtd.org" :maxlevel . 1)
-                             ("~/nextcloud/org/someday.org" :level . 1)
-                             ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
+  (require 'org-protocol)
 )
+(server-start)
+
+(setq org-refile-targets '(("~/nextcloud/org/fri.org" :maxlevel . 1)
+                           ("~/nextcloud/org/someday.org" :level . 1)
+                           ("~/nextcloud/org/zasebno.org" :level . 1)
+                           ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
+(setq org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                               "* TODO %i%?")
+                              ;; ("p" "Protocol" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                              ;;  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+                              ;; ("L" "Protocol Link" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                              ;;  "* %? [[%:link][%:description]] \nCaptured On: %U")
+                              ("T" "Tickler" entry (file+headline "~/nextcloud/org/tickler.org" "Tickler")
+                               "* %i%? \n %U")))

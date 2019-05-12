@@ -1,14 +1,14 @@
 " deoplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
-" deoplete-go
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+" " deoplete-go
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
 " gutentags
 " Plug 'ludovicchabant/vim-gutentags'
