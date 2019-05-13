@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
      mu4e
      (latex :variables
             latex-enable-folding t)
+     pdf
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -76,7 +77,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      org-caldav)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -486,7 +488,7 @@ before packages are loaded."
 
   (with-eval-after-load 'org
     (setq org-todo-keywords
-          '((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED")))
+          '((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELLED")))
     (setq org-todo-keyword-faces
           '(("TODO" . "SlateGray")
             ("WAITING" . "Firebrick")
@@ -510,14 +512,17 @@ This function is called at the very end of Spacemacs initialization."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files '("~/nextcloud/org/inbox.org"
-                      "~/nextcloud/org/zasebno.org"
-                      "~/nextcloud/org/fri.org"
-                      "~/nextcloud/org/tickler.org"))
+ '(org-agenda-files
+   (quote
+    ("~/nextcloud/org/inbox.org"
+     "~/nextcloud/org/zasebno.org"
+     ;; "~/nextcloud/org/calendar.org"
+     "~/nextcloud/org/fri.org"
+     "~/nextcloud/org/tickler.org")))
  '(org-log-into-drawer t)
  '(package-selected-packages
    (quote
-    (unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+    (org-caldav pdf-tools tablist unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
  '(send-mail-function (quote sendmail-send-it))
  '(vc-follow-symlinks t))
 (custom-set-faces
@@ -555,8 +560,6 @@ This function is called at the very end of Spacemacs initialization."
 
   ;; setup some handy shortcuts
   ;; you can quickly switch to your Inbox -- press ``ji''
-  ;; then, when you want archive some messages, move them to
-  ;; the 'All Mail' folder by pressing ``ma''.
   mu4e-maildir-shortcuts '(
     ("/gmail/INBOX"               . ?i)
     ("/gmail/[Gmail].Sent Mail"   . ?s)
@@ -564,7 +567,6 @@ This function is called at the very end of Spacemacs initialization."
     ("/gmail/[Gmail].All Mail"    . ?a))
 
   mu4e-attachment-dir  "~/Downloads"
-  ;; allow for updating mail using 'U' in the main view:
   mu4e-get-mail-command "mbsync -a"
 
   user-mail-address "david.jelenc@fri.uni-lj.si"
@@ -576,10 +578,9 @@ This function is called at the very end of Spacemacs initialization."
   mu4e-enable-notifications t
   mu4e-update-interval 60
   use-hard-newlines t
-  ;; store org links to queries in headers mode
-  org-mu4e-link-query-in-headers-mode t
-  ;; don't keep message buffers around
-  message-kill-buffer-on-exit t)
+  org-mu4e-link-query-in-headers-mode t ;; store org links to queries in headers mode
+  message-kill-buffer-on-exit t ;; don't keep message buffers around
+)
 
 (require 'mu4e-contrib)
 (setq mu4e-html2text-command 'mu4e-shr2text)
@@ -591,9 +592,9 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
-  (require 'org-protocol)
+  ;; (require 'org-protocol)
 )
-(server-start)
+;; (server-start)
 
 (setq org-refile-targets '(("~/nextcloud/org/fri.org" :maxlevel . 1)
                            ("~/nextcloud/org/someday.org" :level . 1)
@@ -601,9 +602,18 @@ This function is called at the very end of Spacemacs initialization."
                            ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
 (setq org-capture-templates '(("t" "Todo [inbox]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                                "* TODO %i%?")
-                              ;; ("p" "Protocol" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                              ;;  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-                              ;; ("L" "Protocol Link" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                              ;;  "* %? [[%:link][%:description]] \nCaptured On: %U")
                               ("T" "Tickler" entry (file+headline "~/nextcloud/org/tickler.org" "Tickler")
                                "* %i%? \n %U")))
+;; Latex
+(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+      TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+      TeX-source-correlate-start-server t
+)
+
+;; org-caldav
+;; (setq org-caldav-url "https://cloud.lem.im/remote.php/caldav/calendars/david" ;; the base address of your CalDAV server
+;;       org-caldav-calendar-id "default" ;; the calendar-id of your new calendar:
+;;       org-caldav-inbox "~/nextcloud/org/calendar.org" ;; org filename where new entries from the calendar should be stored.
+;;       ;; org-caldav-files () ;; list of org files for sync. org-caldav-inbox will be automatically added
+;;       org-icalendar-timezone "Europe/Ljubljana"
+;;  )
