@@ -582,6 +582,8 @@ This function is called at the very end of Spacemacs initialization."
   message-kill-buffer-on-exit t ;; don't keep message buffers around
 )
 
+(add-hook 'mu4e-compose-mode-hook 'turn-off-auto-fill)
+
 (require 'mu4e-contrib)
 (setq mu4e-html2text-command 'mu4e-shr2text)
 (add-hook 'mu4e-view-mode-hook
@@ -611,9 +613,11 @@ This function is called at the very end of Spacemacs initialization."
 )
 
 ;; org-caldav
-;; (setq org-caldav-url "https://cloud.lem.im/remote.php/caldav/calendars/david" ;; the base address of your CalDAV server
-;;       org-caldav-calendar-id "default" ;; the calendar-id of your new calendar:
-;;       org-caldav-inbox "~/nextcloud/org/calendar.org" ;; org filename where new entries from the calendar should be stored.
-;;       ;; org-caldav-files () ;; list of org files for sync. org-caldav-inbox will be automatically added
-;;       org-icalendar-timezone "Europe/Ljubljana"
-;;  )
+(setq org-caldav-url "https://cloud.lem.im/remote.php/caldav/calendars/david" ;; the base address of your CalDAV server
+      org-caldav-calendar-id "tickler" ;; the calendar-id of your new calendar:
+      org-caldav-inbox "~/nextcloud/org/tickler.org" ;; org filename where new entries from the calendar should be stored.
+      org-caldav-files '() ;; list of org files for sync. org-caldav-inbox will be automatically added
+      ;; org-caldav-files '("~/nextcloud/org/tickler.org") ;; list of org files for sync. org-caldav-inbox will be automatically added
+      org-icalendar-timezone "Europe/Ljubljana"
+      org-caldav-save-directory "~/nextcloud/org/sync-cal"
+ )
