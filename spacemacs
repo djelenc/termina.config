@@ -480,9 +480,10 @@ before packages are loaded."
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-  ;; Also in visual mode
+  ;; ;; Also in visual mode
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+  (global-visual-line-mode 1) ; 1 for on, 0 for off.
   ;; To perform full-document previews for latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -516,7 +517,6 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     ("~/nextcloud/org/inbox.org"
      "~/nextcloud/org/zasebno.org"
-     ;; "~/nextcloud/org/calendar.org"
      "~/nextcloud/org/fri.org"
      "~/nextcloud/org/tickler.org")))
  '(org-log-into-drawer t)
@@ -613,11 +613,14 @@ This function is called at the very end of Spacemacs initialization."
 )
 
 ;; org-caldav
-(setq org-caldav-url "https://cloud.lem.im/remote.php/caldav/calendars/david" ;; the base address of your CalDAV server
-      org-caldav-calendar-id "tickler" ;; the calendar-id of your new calendar:
+(setq org-caldav-url "https://cloud.lem.im/remote.php/dav/calendars/david" ;; the base address of your CalDAV server
+      org-caldav-calendar-id "orgmode" ;; the calendar-id of your new calendar:
       org-caldav-inbox "~/nextcloud/org/tickler.org" ;; org filename where new entries from the calendar should be stored.
-      org-caldav-files '() ;; list of org files for sync. org-caldav-inbox will be automatically added
-      ;; org-caldav-files '("~/nextcloud/org/tickler.org") ;; list of org files for sync. org-caldav-inbox will be automatically added
+      org-caldav-files '( ;; list of org files for sync (without org-caldav-inbox)
+                         ;; "~/nextcloud/org/inbox.org"
+                         ;; "~/nextcloud/org/fri.org"
+                         ;; "~/nextcloud/org/zasebno.org"
+                         )
       org-icalendar-timezone "Europe/Ljubljana"
       org-caldav-save-directory "~/nextcloud/org/sync-cal"
  )
