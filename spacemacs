@@ -225,7 +225,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro Medium"
-                               :size 19.0
+                               :size 17
                                :weight normal
                                :width normal)
 
@@ -570,6 +570,7 @@ This function is called at the very end of Spacemacs initialization."
   mu4e-get-mail-command "mbsync -a"
 
   user-mail-address "david.jelenc@fri.uni-lj.si"
+  mu4e-user-mail-address-list '("david.jelenc@fri.uni-lj.si")
   user-full-name  "David Jelenc"
 
   mu4e-enable-mode-line t
@@ -594,8 +595,6 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
-  (define-key mu4e-headers-mode-map (kbd "C-c c") 'org-mu4e-store-and-capture)
-  (define-key mu4e-view-mode-map    (kbd "C-c c") 'org-mu4e-store-and-capture)
   ;; (require 'org-protocol)
 )
 ;; (server-start)
@@ -606,11 +605,11 @@ This function is called at the very end of Spacemacs initialization."
                            ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
 (setq org-capture-templates '(("t" "Todo" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                               "* TODO %i%?")
-                              ("l" "Todo [link to buffer]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                              ("l" "Todo [buffer link]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                                "* TODO %a%?")
-                              ("r" "Todo [deadline]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
+                              ("d" "Todo [deadline]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                                "* TODO %a %?\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+2d\"))")
-                              ("T" "Tickler" entry (file+headline "~/nextcloud/org/tickler.org" "Tickler")
+                              ("c" "Tickler" entry (file+headline "~/nextcloud/org/tickler.org" "Tickler")
                                "* %i%? \n %U")))
 
 ;; org-caldav
@@ -618,9 +617,6 @@ This function is called at the very end of Spacemacs initialization."
       org-caldav-calendar-id "orgmode" ;; the calendar-id of your new calendar:
       org-caldav-inbox "~/nextcloud/org/tickler.org" ;; org filename where new entries from the calendar should be stored.
       org-caldav-files '( ;; list of org files for sync (without org-caldav-inbox)
-                         ;; "~/nextcloud/org/inbox.org"
-                         ;; "~/nextcloud/org/fri.org"
-                         ;; "~/nextcloud/org/zasebno.org"
                          )
       org-icalendar-timezone "Europe/Ljubljana"
       org-caldav-save-directory "~/nextcloud/org/sync-cal"
