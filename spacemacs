@@ -525,6 +525,26 @@ This function is called at the very end of Spacemacs initialization."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(evil-want-Y-yank-to-eol nil)
+ '(org-agenda-custom-commands
+   (quote
+    (("f" "Agenda and NEXT @ fri"
+      ((agenda "" nil)
+       (todo "NEXT"
+             ((org-agenda-tag-filter-preset
+               (quote
+                ("-zasebno"))))))
+      nil)
+     ("p" "Agenda and NEXT @ zasebno"
+      ((agenda "" nil)
+       (todo "NEXT"
+             ((org-agenda-tag-filter-preset
+               (quote
+                ("-fri"))))))
+      nil)
+     ("n" "Agenda and all TODOs"
+      ((agenda "" nil)
+       (alltodo "" nil))
+      nil))))
  '(org-agenda-files
    (quote
     ("~/nextcloud/org/inbox.org" "~/nextcloud/org/zasebno.org" "~/nextcloud/org/fri.org" "~/nextcloud/org/tickler.org")))
