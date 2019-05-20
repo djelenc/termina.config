@@ -81,7 +81,9 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(org-caldav)
+   dotspacemacs-additional-packages '(
+                                      key-chord
+                                      org-caldav)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -204,7 +206,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(leuven
+   dotspacemacs-themes '(
+                         tsdh-light
+                         whiteboard
+                         leuven
                          spacemacs-light
                          monokai
                          spacemacs-dark)
@@ -490,6 +495,10 @@ before packages are loaded."
   ;; To perform full-document previews for latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
+  ;; extra escape sequence
+  (key-chord-mode 1)
+  (key-chord-define evil-insert-state-map "jj" 'evil-escape)
+
   (with-eval-after-load 'org
     (setq org-todo-keywords
           '((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELLED")))
@@ -522,7 +531,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-log-into-drawer t)
  '(package-selected-packages
    (quote
-    (smeargle orgit magit-svn magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl browse-at-remote toml-mode racer flycheck-rust cargo rust-mode org-caldav pdf-tools tablist unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+    (key-chord smeargle orgit magit-svn magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl browse-at-remote toml-mode racer flycheck-rust cargo rust-mode org-caldav pdf-tools tablist unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
  '(send-mail-function (quote sendmail-send-it))
  '(vc-follow-symlinks t))
 (custom-set-faces
@@ -604,12 +613,12 @@ This function is called at the very end of Spacemacs initialization."
                            ("~/nextcloud/org/zasebno.org" :level . 1)
                            ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
 (setq org-capture-templates '(("t" "Todo" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                              "* TODO %i%?")
+                               "* TODO %i%?")
                               ("l" "Todo [buffer link]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                                "* TODO %a%?")
                               ("d" "Todo [deadline]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
                                "* TODO %a %?\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+2d\"))")
-                              ("c" "Tickler" entry (file+headline "~/nextcloud/org/tickler.org" "Tickler")
+                              ("c" "Tickler" entry (file "~/nextcloud/org/tickler.org")
                                "* %i%? \n %U")))
 
 ;; org-caldav
