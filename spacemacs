@@ -662,8 +662,9 @@ This function is called at the very end of Spacemacs initialization."
       org-caldav-save-directory "~/nextcloud/org/sync-cal"
  )
 ;; language tool
-;; (require 'langtool)
-;; (setq langtool-language-tool-commandline-jar "~/apps/LanguageTool-4.5/languagetool-commandline.jar")
-;; (setq langtool-language-tool-jar "~/apps/LanguageTool-4.5/languagetool.jar")
-;; (setq langtool-enabled-rules '("And"))
-;; (setq langtool-disabled-rules '("WHITESPACE_RULE" "EN_QUOTES"))
+(setq langtool-language-tool-jar "~/apps/LanguageTool-4.5/languagetool-commandline.jar"
+      langtool-enabled-rules '("And")
+      langtool-disabled-rules '("WHITESPACE_RULE"
+                                "EN_UNPAIRED_BRACKETS"
+                                "COMMA_PARENTHESIS_WHITESPACE"
+                                "EN_QUOTES"))
