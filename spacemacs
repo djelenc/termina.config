@@ -44,12 +44,8 @@ This function should only modify configuration layer settings."
          go-tab-width 4
          godoc-at-point-function 'godoc-gogetdoc
       )
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     helm
+     ;; helm
+     ivy
      auto-completion
      better-defaults
      emacs-lisp
@@ -71,9 +67,6 @@ This function should only modify configuration layer settings."
      (spell-checking :variables enable-flyspell-auto-completion t)
      syntax-checking
      version-control
-     ;; (languagetool :variables
-     ;;               langtool-language-tool-jar "~/apps/LanguageTool-4.5/languagetool-commandline.jar"
-     ;;               languagetool-show-error-on-jump t)
      )
 
    ;; List of additional packages that will be installed without being
