@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
      (go :variables
          gofmt-command "goimports"
          go-format-before-save t
-         go-use-gometalinter t
+         ;; go-use-gometalinter t
          go-use-golangci-lint t
          go-tab-width 4
          godoc-at-point-function 'godoc-gogetdoc

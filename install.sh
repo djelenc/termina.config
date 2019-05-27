@@ -27,3 +27,7 @@ ln -sf $PWD/zshrc ~/.zshrc
 # spacemacs
 mv ~/.spacemacs ~/.spacemacs-$DATE && echo "Backing up existing spacemacs to ~/.spacemacs-$DATE" || echo "No prior spacemacs"
 ln -sf $PWD/spacemacs ~/.spacemacs
+
+# ideavimrc
+mv ~/.ideavimrc ~/.ideavimrc-$DATE && echo "Backing up existing ideavimrc ~/.ideavimrc-$DATE" || echo "No prior ideavimrc"
+ln -sf $PWD/ideavimrc ~/.ideavimrc
