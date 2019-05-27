@@ -1,0 +1,5 @@
+imap fd <Esc>
+imap df <Esc>
+set timeoutlen=1000
+set number relativenumber
+set rnu
