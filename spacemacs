@@ -653,6 +653,9 @@ This function is called at the very end of Spacemacs initialization."
                          )
       org-icalendar-timezone "Europe/Ljubljana"
       org-caldav-save-directory "~/nextcloud/org/sync-cal"
+      org-icalendar-alarm-time 15
+      org-icalendar-use-deadline '(event-if-not-todo todo-due event-if-todo)
+      org-icalendar-use-scheduled '(event-if-not-todo todo-start event-if-todo)
  )
 ;; language tool
 (setq langtool-language-tool-jar "~/apps/LanguageTool-4.5/languagetool-commandline.jar"
