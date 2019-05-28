@@ -61,6 +61,7 @@ This function should only modify configuration layer settings."
             TeX-source-correlate-start-server t
             latex-enable-folding t)
      pdf
+     chrome
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
