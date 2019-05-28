@@ -665,3 +665,7 @@ This function is called at the very end of Spacemacs initialization."
                                 "EN_UNPAIRED_BRACKETS"
                                 "COMMA_PARENTHESIS_WHITESPACE"
                                 "EN_QUOTES"))
+
+(add-hook 'writeroom-mode-hook (lambda ()
+                                 "Disable line numbers in write room"
+                                 (linum-mode 0)))
