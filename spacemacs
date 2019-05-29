@@ -79,6 +79,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       langtool
+                                      spaceline-all-the-icons
                                       key-chord
                                       org-caldav)
 
@@ -218,7 +219,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -483,15 +484,27 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
-  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
-  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-  ;; ;; Also in visual mode
-  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-  (global-visual-line-mode 1) ; 1 for on, 0 for off.
+  ;; (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+  ;; (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+  ;; ;; ;; Also in visual mode
+  ;; (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+  ;; (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+  ;; (global-visual-line-mode 1) ; 1 for on, 0 for off.
+  (add-hook 'text-mode-hook (lambda ()
+                         "wrap lines in text mode"
+                         (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+                         (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+                         (define-key evil-visual-state-map "j" 'evil-next-visual-line)
+                         (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+                         (global-visual-line-mode 1) ; 1 for on, 0 for off.
+                        ))
   ;; To perform full-document previews for latex
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
+  ;; runs when writeroom mode is activated
+  (add-hook 'writeroom-mode-hook (lambda ()
+                                   "Disable line numbers in write room"
+                                   (linum-mode 0)))
   ;; extra escape sequence
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jj" 'evil-escape)
@@ -666,6 +679,3 @@ This function is called at the very end of Spacemacs initialization."
                                 "COMMA_PARENTHESIS_WHITESPACE"
                                 "EN_QUOTES"))
 
-(add-hook 'writeroom-mode-hook (lambda ()
-                                 "Disable line numbers in write room"
-                                 (linum-mode 0)))
