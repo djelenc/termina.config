@@ -504,7 +504,7 @@ before packages are loaded."
 
   ;; runs when writeroom mode is activated
   (add-hook 'writeroom-mode-hook (lambda ()
-                                   "Disable line numbers in write room"
+                                   "Disable line numbers and change fonts"
                                    (interactive)
                                    (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
                                    (buffer-face-mode)
@@ -646,22 +646,16 @@ This function is called at the very end of Spacemacs initialization."
 
 (with-eval-after-load 'org
   (require 'org-mu4e)
-  ;; (require 'org-protocol)
 )
-;; (server-start)
 
 (setq org-refile-targets '(("~/nextcloud/org/fri.org" :maxlevel . 1)
                            ("~/nextcloud/org/someday.org" :level . 1)
                            ("~/nextcloud/org/zasebno.org" :level . 1)
                            ("~/nextcloud/org/tickler.org" :maxlevel . 2)))
-(setq org-capture-templates '(("t" "Todo" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                               "* TODO %i%?")
-                              ("l" "Todo [buffer link]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                               "* TODO %a%?")
-                              ("d" "Todo [deadline]" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks")
-                               "* TODO %a %?\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+2d\"))")
-                              ("c" "Tickler" entry (file "~/nextcloud/org/tickler.org")
-                               "* %i%? \n %U")))
+(setq org-capture-templates '(
+                              ("t" "Todo" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks") "* TODO %i %?")
+                              ("c" "Event" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks") "* TODO %i %?\n%a\n%^t")
+                              ))
 
 ;; org-caldav
 (setq org-caldav-url "https://cloud.lem.im/remote.php/dav/calendars/david" ;; the base address of your CalDAV server
