@@ -65,7 +65,8 @@ This function should only modify configuration layer settings."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     (spell-checking :variables enable-flyspell-auto-completion t)
+     (spell-checking)
+     ;; (spell-checking :variables enable-flyspell-auto-completion t)
      syntax-checking
      version-control
      )
@@ -504,6 +505,9 @@ before packages are loaded."
   ;; runs when writeroom mode is activated
   (add-hook 'writeroom-mode-hook (lambda ()
                                    "Disable line numbers in write room"
+                                   (interactive)
+                                   (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
+                                   (buffer-face-mode)
                                    (linum-mode 0)))
   ;; extra escape sequence
   (key-chord-mode 1)
@@ -679,3 +683,73 @@ This function is called at the very end of Spacemacs initialization."
                                 "COMMA_PARENTHESIS_WHITESPACE"
                                 "EN_QUOTES"))
 
+;; auto-correct spelling mistakes and add them to the dictionary
+(define-key ctl-x-map "\C-i"
+  #'endless/ispell-word-then-abbrev)
+
+(defun endless/simple-get-word ()
+  (car-safe (save-excursion (ispell-get-word nil))))
+
+(setq save-abbrevs 'silently)
+(setq-default abbrev-mode t)
+
+(defun endless/flyspell-word-then-abbrev (p)
+  "Call `ispell-word', then create an abbrev for it.
+With prefix P, create local abbrev. Otherwise it will
+be global."
+  (interactive "P")
+  (save-excursion
+    (if (flyspell-goto-previous-word (point))
+        (let ((bef (downcase (or (thing-at-point 'word)
+                                 "")))
+              aft)
+          (call-interactively 'ispell-word)
+          (setq aft (downcase
+                     (or (thing-at-point 'word) "")))
+          (unless (or (string= aft bef)
+                      (string= aft "")
+                      (string= bef ""))
+            (message "\"%s\" now expands to \"%s\" %sally"
+                     bef aft (if p "loc" "glob"))
+            (define-abbrev
+              (if p local-abbrev-table global-abbrev-table)
+              bef aft)))
+      (message "Cannot find a misspelled word"))))
+(define-key ctl-x-map "\C-i"
+  #'endless/flyspell-word-then-abbrev)
+;;*---------------------------------------------------------------------*/
+;;*    flyspell-goto-previous-word ...                          */
+;;*---------------------------------------------------------------------*/
+(defun flyspell-goto-previous-word (position)
+  "Go to the first misspelled word that occurs before point.
+But don't look beyond what's visible on the screen."
+  (interactive "d")
+  (let ((top (window-start))
+    (bot (window-end)))
+    (save-restriction
+      (narrow-to-region top bot)
+      (overlay-recenter (point))
+      (add-hook 'pre-command-hook
+                (function flyspell-auto-correct-previous-hook) t t)
+      (unless flyspell-auto-correct-previous-pos
+        ;; only reset if a new overlay exists
+        (setq flyspell-auto-correct-previous-pos nil)
+        (let ((overlay-list (overlays-in (point-min) position))
+              (new-overlay 'dummy-value))
+          ;; search for previous (new) flyspell overlay
+          (while (and new-overlay
+                      (or (not (flyspell-overlay-p new-overlay))
+                          ;; check if its face has changed
+                          (not (eq (get-char-property
+                                    (overlay-start new-overlay) 'face)
+                                   'flyspell-incorrect))))
+            (setq new-overlay (car-safe overlay-list))
+            (setq overlay-list (cdr-safe overlay-list)))
+          ;; if nothing new exits new-overlay should be nil
+          (if new-overlay ;; the length of the word may change so go to the start
+              (setq flyspell-auto-correct-previous-pos
+                    (overlay-start new-overlay)))))
+      (if (not flyspell-auto-correct-previous-pos)
+          nil
+        (goto-char flyspell-auto-correct-previous-pos)
+        t))))
