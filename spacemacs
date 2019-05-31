@@ -38,6 +38,7 @@ This function should only modify configuration layer settings."
      python
      html
      javascript
+     php
      (go :variables
          gofmt-command "goimports"
          go-format-before-save t
@@ -86,6 +87,7 @@ This function should only modify configuration layer settings."
                                       langtool
                                       spaceline-all-the-icons
                                       key-chord
+                                      restclient
                                       org-caldav)
 
    ;; A list of packages that cannot be updated.
