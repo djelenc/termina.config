@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(typescript
+   '(vimscript
+     typescript
      rust
      python
      html
@@ -539,6 +540,9 @@ before packages are loaded."
     )
   ;; tern for javascript
   (setq tern-command '("node" "/usr/local/bin/tern"))
+
+  ;; change port for impatient mode
+  (setq httpd-port 8199)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -582,7 +586,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-log-into-drawer t)
  '(package-selected-packages
    (quote
-    (tide typescript-mode import-js grizzl langtool flyspell-popup key-chord smeargle orgit magit-svn magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl browse-at-remote toml-mode racer flycheck-rust cargo rust-mode org-caldav pdf-tools tablist unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+    (vimrc-mode helm helm-core dactyl-mode tide typescript-mode import-js grizzl langtool flyspell-popup key-chord smeargle orgit magit-svn magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl browse-at-remote toml-mode racer flycheck-rust cargo rust-mode org-caldav pdf-tools tablist unfill symbol-overlay mwim mmm-mode markdown-toc markdown-mode gh-md blacken company-auctex auctex-latexmk auctex flycheck-gometalinter flycheck-golangci-lint flycheck-pos-tip pos-tip godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc company-go go-mode yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic monokai-theme mu4e-maildirs-extension mu4e-alert helm-mu flyspell-correct-helm flyspell-correct auto-dictionary web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain htmlize helm-org-rifle helm-company helm-c-yasnippet gnuplot fuzzy evil-org company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
  '(send-mail-function (quote sendmail-send-it))
  '(vc-follow-symlinks t))
 (custom-set-faces
@@ -685,7 +689,6 @@ This function is called at the very end of Spacemacs initialization."
                                 "EN_UNPAIRED_BRACKETS"
                                 "COMMA_PARENTHESIS_WHITESPACE"
                                 "EN_QUOTES"))
-
 ;; auto-correct spelling mistakes and add them to the dictionary
 (define-key ctl-x-map "\C-i"
   #'endless/ispell-word-then-abbrev)
