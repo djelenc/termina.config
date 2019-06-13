@@ -66,6 +66,8 @@ This function should only modify configuration layer settings."
             latex-enable-folding t)
      pdf
      chrome
+     (evil-snipe :variables
+                 evil-snipe-enable-alternate-f-and-t-behaviors t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -504,6 +506,8 @@ before packages are loaded."
                          (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
                          (define-key evil-visual-state-map "j" 'evil-next-visual-line)
                          (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+                         (define-key evil-normal-state-map (kbd "<down>") 'evil-next-visual-line)
+                         (define-key evil-normal-state-map (kbd "<up>") 'evil-previous-visual-line)
                          (global-visual-line-mode 1) ; 1 for on, 0 for off.
                         ))
   ;; To perform full-document previews for latex
@@ -543,6 +547,13 @@ before packages are loaded."
 
   ;; change port for impatient mode
   (setq httpd-port 8199)
+
+  ;; tabs take 2 spaces
+  (defun my-web-mode-hook ()
+    "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 2)
+    )
+  (add-hook 'web-mode-hook  'my-web-mode-hook)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
