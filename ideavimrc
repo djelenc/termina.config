@@ -1,9 +1,30 @@
 imap fd <Esc>
-imap jj <Esc>
 imap df <Esc>
 set timeoutlen=1000
 set incsearch
 set number relativenumber
 set rnu
+set showmode
+
+" ideavim supported plugins
+set surround
 
 noremap <space> :
+let mapleader = ","
+
+" insert empty lines but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+
+" comment lines
+nmap gcc :action CommentByLineComment<cr>
+vmap gcc :action CommentByLineComment<cr>
+
+" custom bindings
+map <Leader>e :action SearchEverywhere<CR>
+map <Leader>b :action RecentFiles<CR>
+map <Leader>w :action NextTab<CR>
+map <Leader>q :action PreviousTab<CR>
+
+" scroll with ctrl+y
+nmap <C-z> :action VimMotionScrollLineUp<CR>
