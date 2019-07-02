@@ -215,10 +215,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         spacemacs-light
                          tsdh-light
                          whiteboard
                          leuven
-                         spacemacs-light
                          monokai
                          spacemacs-dark)
 
@@ -517,13 +517,13 @@ before packages are loaded."
   (add-hook 'writeroom-mode-hook (lambda ()
                                    "Disable line numbers and change fonts"
                                    (interactive)
-                                   (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
+                                   ;; (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
                                    (buffer-face-mode)
                                    (linum-mode 0)))
   ;; extra escape sequence
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jj" 'evil-escape)
-  (key-chord-define evil-insert-state-map "ff" 'evil-escape)
+  ;; (key-chord-define evil-insert-state-map "ff" 'evil-escape)
 
   (with-eval-after-load "ispell"
     (setq ispell-program-name "hunspell")
