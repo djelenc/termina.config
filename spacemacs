@@ -517,7 +517,7 @@ before packages are loaded."
   (add-hook 'writeroom-mode-hook (lambda ()
                                    "Disable line numbers and change fonts"
                                    (interactive)
-                                   ;; (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
+                                   (setq buffer-face-mode-face '(:family "Linux Libertine" :height 200))
                                    (buffer-face-mode)
                                    (linum-mode 0)))
   ;; extra escape sequence
@@ -680,6 +680,13 @@ This function is called at the very end of Spacemacs initialization."
                               ("t" "Todo" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks") "* TODO %i %?")
                               ("c" "Event" entry (file+headline "~/nextcloud/org/inbox.org" "Tasks") "* TODO %i %?\n%a\n%^t")
                               ))
+
+;; org-agenda customized view
+(setq
+ ;; org-agenda-span 7
+ org-agenda-start-on-weekday nil
+ ;; org-agenda-start-day "-1d"
+ )
 
 ;; org-caldav
 (setq org-caldav-url "https://cloud.lem.im/remote.php/dav/calendars/david" ;; the base address of your CalDAV server
