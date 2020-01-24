@@ -63,6 +63,7 @@ This function should only modify configuration layer settings."
             TeX-view-program-selection '((output-pdf "PDF Tools"))
             TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
             TeX-source-correlate-start-server t
+            latex-enable-auto-fill nil
             latex-enable-folding t)
      pdf
      chrome
