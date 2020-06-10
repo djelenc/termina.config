@@ -2,6 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:$HOME/bin"
 
+# emacs doom scripts
+export PATH="$PATH:/home/david/.emacs.d/bin"
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/david/.oh-my-zsh
 
