@@ -1,6 +1,7 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
+;; last working commit 8a4bf9c655744081eebb030f587777c061f224e5
 
 (defun dotspacemacs/layers ()
   "Layer configuration:
