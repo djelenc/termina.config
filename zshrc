@@ -67,6 +67,8 @@ plugins=(
     golang
     docker
     docker-compose
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -121,7 +123,7 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper.sh >/dev/null 2>&1 || sour
 
 # Maybe put the following PATH modifications to some local file?
 # ESP32 toolchain
-export PATH="$PATH:/home/david/Development/esp32/xtensa-esp32-elf/bin"
+export PATH="$PATH:/home/david/Development/esp32/xtensa-esp32-elf/bin:/home/david/.emacs.d/bin"
 export IDF_PATH=~/Development/esp32/esp-idf
 
 # Cuda: do I need it?
