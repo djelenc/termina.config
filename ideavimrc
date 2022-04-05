@@ -23,10 +23,11 @@ vmap gcc :action CommentByLineComment<cr>
 " custom bindings
 map <Leader>ff :action SearchEverywhere<CR>
 map <Leader>bb :action RecentFiles<CR>
-map <Leader>w :action NextTab<CR>
-map <Leader>q :action PreviousTab<CR>
+map <C-k> :action NextTab<CR>
+map <C-j> :action PreviousTab<CR>
 map <Leader>bd :q<CR>
 map <Leader>fs :w<CR>
 
 " scroll with ctrl+y
-nmap <C-z> :action VimMotionScrollLineUp<CR>
+" nmap <C-z> :action VimMotionScrollLineUp<CR>
+" nmap <C-e> :action VimMotionScrollLineDown<CR>

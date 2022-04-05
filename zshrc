@@ -174,5 +174,8 @@ bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
 
 # Map tapped CAPS to ESC and held CAPS to CTRL
-setxkbmap -option 'caps:ctrl_modifier'
-xcape -e 'Caps_Lock=Escape'
+# setxkbmap -option 'caps:ctrl_modifier'
+# xcape -e 'Caps_Lock=Escape'
+
+export JAVA_HOME=/usr/lib/jvm/default-java
+fpath+=${ZDOTDIR:-~}/.zsh_functions
